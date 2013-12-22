@@ -16,14 +16,21 @@ object build extends Build {
     file("."),
     settings = gcsettings ++ Seq(
       gcTask,
-      scalaVersion := "2.8.1",
+      scalaVersion := "2.10.1",
       resolvers ++= Seq(
-        "Twitter's Repository" at "http://maven.twttr.com/",
         Classpaths.typesafeReleases
       ),
       libraryDependencies ++= Seq(
-        "com.twitter" % "cassie" % "0.20.0" exclude("javax.jms", "jms") exclude("com.sun.jmx","jmxri" ) exclude("com.sun.jdmk", "jmxtools"),
-        "thrift" % "libthrift" % "0.5.0" from "http://maven.twttr.com/thrift/libthrift/0.5.0/libthrift-0.5.0.jar"
+        "com.typesafe.akka" %% "akka-actor" % "2.2.3",
+        "com.typesafe.akka" %% "akka-slf4j" % "2.2.3",
+        "com.datastax.cassandra"  % "cassandra-driver-core" % "1.0.1" exclude("org.slf4j", "slf4j-log4j12"),
+        "ch.qos.logback" % "logback-classic" % "1.0.13",
+        "org.json4s" %% "json4s-native" % "3.2.6"
+      ),
+      scalacOptions ++= Seq (
+        "-deprecation",
+        "-feature",
+        "-language:postfixOps"
       )
     )
   ).settings(net.virtualvoid.sbt.graph.Plugin.graphSettings: _*)
