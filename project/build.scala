@@ -18,14 +18,19 @@ object build extends Build {
       gcTask,
       scalaVersion := "2.10.1",
       resolvers ++= Seq(
-        Classpaths.typesafeReleases
+        Classpaths.typesafeReleases,
+        "RethinkScala Repository" at "http://kclay.github.io/releases"
       ),
       libraryDependencies ++= Seq(
-        "com.typesafe.akka" %% "akka-actor" % "2.2.3",
-        "com.typesafe.akka" %% "akka-slf4j" % "2.2.3",
-        "com.datastax.cassandra"  % "cassandra-driver-core" % "1.0.1" exclude("org.slf4j", "slf4j-log4j12"),
+        "com.rethinkscala" %% "core" % "0.4",
+        "com.datastax.cassandra" % "cassandra-driver-core" % "2.0.0-rc2",
+        "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.0.2",
         "ch.qos.logback" % "logback-classic" % "1.0.13",
-        "org.json4s" %% "json4s-native" % "3.2.6"
+        "org.json4s" %% "json4s-jackson" % "3.2.6",
+        "org.scalaj" %% "scalaj-http" % "0.3.12",
+        "net.jpountz.lz4" % "lz4" % "1.2.0",
+        "org.xerial.snappy" % "snappy-java" % "1.1.1-M1",
+        "org.scala-lang" % "scala-actors" % "2.10.1"
       ),
       scalacOptions ++= Seq (
         "-deprecation",
